@@ -7,7 +7,7 @@ from numpy import array, zeros
 from ctypes import c_byte
 from pyglet.gl import glBegin, GL_QUADS, glVertex2i, glEnd, glColor3f
 from pyglet.gl.gl import GL_LINE_LOOP
-from numba import jit
+#from numba import jit
 
 
 ANCHOR = array([0,0])
@@ -34,7 +34,7 @@ class Water:
         
         return out
     
-    @jit(forceobj=True)
+    #@jit(forceobj=True)
     def update(self):
         '''Looks for the largest and smallest true values on each axis and updates the hitBox attributes'''
         for i in range(self.sizeX):
