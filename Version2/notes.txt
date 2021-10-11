@@ -1,0 +1,6 @@
+This version is mainly different from version 1 in the sense that 
+the class functions are in a more understandable order,
+and that the Water class now has a hitbox attached to it.
+So that way the walkers can move without checking their surroundings if they're out of the hitbox.
+
+I also unrolled the Walker.search() function because apparently it's faster than the loops that way
