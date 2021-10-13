@@ -1,0 +1,1 @@
+Updated by making all the particles fall toward the center. aggregate now looks like an oblate plus sign. Runs faster, but doesn't look like DLA should.
