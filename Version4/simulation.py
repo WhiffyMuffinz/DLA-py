@@ -95,8 +95,8 @@ def run():
     #print(bo.__repr__())
     hit_box_draw = False
 
-    walker_list = create_walker_list(bo.sizeX, bo.sizeY, CELL_SIZE)
-    w, h = bo.sizeX * CELL_SIZE, bo.sizeY * CELL_SIZE
+    walker_list = create_walker_list(bo.size_x, bo.size_y, CELL_SIZE)
+    w, h = bo.size_x * CELL_SIZE, bo.size_y * CELL_SIZE
     
     #graphics
     conf = get_window_config()
@@ -106,7 +106,7 @@ def run():
     def update(dt):
         bo.update()
         for walker in walker_list:
-            walker.update(bo, bo.minX, bo.maxX, bo.minY, bo.maxY)
+            walker.update(bo, bo.min_x, bo.max_x, bo.min_y, bo.max_y)
 
     pyglet.clock.schedule_interval(update, 0.0001)   
                                             #^this is to make the clock update faster

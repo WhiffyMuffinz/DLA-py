@@ -21,6 +21,8 @@ class Water:
         self.board[ANCHOR[0]][ANCHOR[1]] = 1
 
         self.min_x, self.min_y, self.max_x, self.max_y = ANCHOR[0], ANCHOR[1], ANCHOR[0], ANCHOR[1]
+
+        self.center = ANCHOR[0], ANCHOR[1]
         
 
     def __repr__ (self) -> str:

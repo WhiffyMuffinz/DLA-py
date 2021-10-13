@@ -15,10 +15,22 @@ class Walker:
     def __repr__(self) -> str:
         return 'Walker with location ({}, {}) and size {}'.format(self.x, self.y, self.cellSize)
     
-    def walk(self):
-        '''moves the walker one unit in the 3x3 square surrounding it'''
+    def walk(self, board):
+        '''determines where the center of the board is and walks toward it with a chance of deviating'''
+        center = board.center
+
+        if self.x > center[0]:
+            self.x = self.x - 1
+        elif self.x < center[0]:
+            self.x = self.x + 1
+        
+        if self.y > center[1]:
+            self.y = self.y - 1
+        elif self.y < center[1]:
+            self.y = self.y + 1
+        
         self.x += randint(-1, 1)
-        self.y += randint(-1,1)
+        self.y += randint(-1, 1)
 
     def new_pos(self, wat):
         '''gives the walker a new position on the edges of the board within a boundary 
@@ -85,7 +97,6 @@ class Walker:
             wat.board[self.x][self.y] = 1
             return True
             
-        #print('SKIPPED!')
         return False
 
     def update(self, wat, min_x, max_x, min_y, max_y):
@@ -99,6 +110,6 @@ class Walker:
            (int) size_y: the extension of the hitbox from the coordinate'''
 
         while not(self.search(wat, min_x, max_x, min_y, max_y)):
-            self.walk()
+            self.walk(wat)
         #print("I am here")
         self.new_pos(wat)
