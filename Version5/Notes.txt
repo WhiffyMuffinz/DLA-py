@@ -1,0 +1,1 @@
+This one is a completely different implementation from the others. It starts by haveingall the particles on the board. They all move each frame, and won't be respawned when they walk off. Instead thay will just not cross the threshold. Hpoefully it will make the structure correctly, and be fast.
