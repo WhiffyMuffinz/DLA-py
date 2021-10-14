@@ -7,9 +7,10 @@ class aggregate:
     def __init__(self, shape: "tuple[int, int]", cell_size):
         self.arr = np.zeros(shape, bool)
         self.cell_size = cell_size
-        self.anchor = [shape[0] / 2, shape[1] / 2]
+        self.shape = shape
+        self.anchor = [shape[0] // 2, shape[1] // 2]
 
-        self.min_x, self.min_y, self.max_x, self.max_ = (
+        self.min_x, self.min_y, self.max_x, self.max_y = (
             self.anchor[0],
             self.anchor[1],
             self.anchor[0],
@@ -21,8 +22,8 @@ class aggregate:
 
     def update(self):
         for i in range(self.shape[0]):
-            for j in range(self.self.shape[1]):
-                if self.board[i][j]:
+            for j in range(self.shape[1]):
+                if self.arr[i][j]:
                     self.min_x = min(i, self.min_x)
                     self.min_y = min(j, self.min_y)
                     self.max_x = max(i, self.max_x)
@@ -33,7 +34,7 @@ class aggregate:
 
         for i in range(self.shape[0]):
             for j in range(self.shape[1]):
-                if self.board[i][j]:
+                if self.arr[i][j]:
                     glColor3f(0.7, 0.7, 0.7)
                     glBegin(GL_QUADS)
                     glVertex2i(i * cs, j * cs)

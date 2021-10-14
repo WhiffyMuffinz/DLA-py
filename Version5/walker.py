@@ -11,7 +11,7 @@ class Walker:
         cell_size: int,
         state: bool = False,
     ):
-        self.position = position
+        self.position = [position[0], position[1]]
         self.state = state
         self.maxes = maxes
         self.cell_size = cell_size
@@ -21,14 +21,14 @@ class Walker:
             self.position[0] += randint(-1, 1)
             self.position[1] += randint(-1, 1)
 
-            if self.position[0] < 0:
-                self.position[0] = 0
-            if self.position[1] < 0:
-                self.position[1] = 0
-            if self.position[0] > self.maxes[0]:
-                self.position[0] = self.maxes[0]
-            if self.position[1] > self.maxes[1]:
-                self.position[1] = self.maxes[1]
+            if self.position[0] < 1:
+                self.position[0] = 1
+            if self.position[1] < 1:
+                self.position[1] = 1
+            if self.position[0] > self.maxes[0] - 2:
+                self.position[0] = self.maxes[0] - 2
+            if self.position[1] > self.maxes[1] - 2:
+                self.position[1] = self.maxes[1] - 2
 
     def search(self, bo: "list[list[bool]]"):
         x, y = self.position[0], self.position[1]

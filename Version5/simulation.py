@@ -66,6 +66,7 @@ def create_walker_list(shape, num):
                 cell_size=CELL_SIZE,
             )
         )
+    return walkers
 
 
 def get_window_config():
@@ -101,7 +102,7 @@ def run():
     def update(dt):
         bo.update()
         for walker in walker_list:
-            walker.update()
+            walker.update(bo.arr)
 
     pyglet.clock.schedule_interval(update, 0.0001)
 
