@@ -17,19 +17,20 @@ class Walker:
         self.cell_size = cell_size
 
     def walk(self):
-        self.position[0] += randint(-1, 1)
-        self.position[1] += randint(-1, 1)
+        if not self.state:
+            self.position[0] += randint(-1, 1)
+            self.position[1] += randint(-1, 1)
 
-        if self.position[0] < 0:
-            self.position[0] = 0
-        if self.position[1] < 0:
-            self.position[1] = 0
-        if self.position[0] > self.maxes[0]:
-            self.position[0] = self.maxes[0]
-        if self.position[1] > self.maxes[1]:
-            self.position[1] = self.maxes[1]
+            if self.position[0] < 0:
+                self.position[0] = 0
+            if self.position[1] < 0:
+                self.position[1] = 0
+            if self.position[0] > self.maxes[0]:
+                self.position[0] = self.maxes[0]
+            if self.position[1] > self.maxes[1]:
+                self.position[1] = self.maxes[1]
 
-    def search(self, bo):
+    def search(self, bo: "list[list[bool]]"):
         x, y = self.position[0], self.position[1]
 
         if bo[x - 1][y - 1]:
@@ -65,6 +66,10 @@ class Walker:
         glVertex2i(x, y + cs)
         glEnd()
 
-    def update(self):
+    def update(self, bo: "list[list[bool]]"):
 
         self.walk()
+
+        if self.search(bo):
+            self.state = False
+            bo[self.position[0]][self.position[1]] = True
