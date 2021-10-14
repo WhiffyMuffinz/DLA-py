@@ -69,6 +69,26 @@ def create_walker_list(shape, num):
     return walkers
 
 
+def debug_summary(ag: aggregate, w_list: "list[Walker]"):
+    ag_count = 0
+    lock_walk_count = 0
+
+    for i in range(len(ag.arr)):
+        for j in range(len(ag.arr[i])):
+            if ag.arr[i][j]:
+                ag_count += 1
+
+    for walker in w_list:
+        if walker.state:
+            lock_walk_count += 1
+
+    print(
+        "aggregate had {} cells, thare were {} locked walkers".format(
+            ag_count - 1, lock_walk_count
+        )
+    )
+
+
 def get_window_config():
     disp = pyglet.canvas.get_display()
     screen = disp.get_default_screen()
@@ -119,6 +139,11 @@ def run():
         if symbol == key.D:
             nonlocal hit_box_draw
             hit_box_draw = not hit_box_draw
+
+        if symbol == key.Q:
+            if hit_box_draw:
+                debug_summary(bo, walker_list)
+            pyglet.app.exit()
 
     pyglet.app.run()
 

@@ -71,5 +71,5 @@ class Walker:
         self.walk()
 
         if self.search(bo):
-            self.state = False
+            self.state = True
             bo[self.position[0]][self.position[1]] = True
