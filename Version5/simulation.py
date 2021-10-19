@@ -3,14 +3,16 @@ import numpy as np
 from random import choice, randint
 
 import pyglet
-from pyglet.gl import Config, glLoadIdentity
+from pyglet.gl import Config, glLoadIdentity, glBegin, glEnd, GL_QUADS, glColor3f
 from pyglet.window import key
+
+from numba import prange, jit
 
 from aggregate import aggregate
 from walker import Walker
 
 CELL_SIZE = 3
-NUM_WALKERS = 1000
+NUM_WALKERS = 5000
 
 
 def print_intro():
@@ -131,8 +133,11 @@ def run():
         window.clear()
         glLoadIdentity()
         bo.draw(hit_box_draw)
+        glColor3f(0.7, 0.7, 0.7)
+        glBegin(GL_QUADS)
         for walker in walker_list:
             walker.draw()
+        glEnd()
 
     @window.event
     def on_key_press(symbol, mods):

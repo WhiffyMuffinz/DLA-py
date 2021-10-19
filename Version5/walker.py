@@ -57,14 +57,14 @@ class Walker:
         cs = self.cell_size
         x, y = self.position[0] * cs, self.position[1] * cs
 
-        glColor3f(0.7, 0.7, 0.7)
+        # glColor3f(0.7, 0.7, 0.7)
 
-        glBegin(GL_QUADS)
+        # glBegin(GL_QUADS)
         glVertex2i(x, y)
         glVertex2i(x + cs, y)
         glVertex2i(x + cs, y + cs)
         glVertex2i(x, y + cs)
-        glEnd()
+        # glEnd()
 
     def update(self, bo: "list[list[bool]]"):
 
